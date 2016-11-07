@@ -1,12 +1,12 @@
 #include "../std_lib_facilities_4.h"
-#include "../fltk/Simple_window.h"
-#include "../fltk/Graph.h"
+#include "../../fltk/Simple_window.h"
+#include "../../fltk/Graph.h"
 
 int main()
 try {
-	Window window(Point(100,200),600,400,"Window");
+	Simple_window window(Point(100,200),600,400,"Window");
 	
-	win1.wait_for_button();
+	window.wait_for_button();
 	return 0;
 }
 catch(exception& e) {

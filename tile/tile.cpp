@@ -1,4 +1,4 @@
-#include "std_lib_facilities_4.h"
+#include "../std_lib_facilities_4.h"
 #include "tile.h"
 
 class tile{
@@ -11,15 +11,16 @@ class tile{
 
 public:
 	char getValue(){
-		
+		return value;
 	}
 
-	void setValue(){
-		
+	void setValue(char c){
+		value = c;
 	}
 	bool drawTile(){
-		
+		//draw the tile
+		return true;
 	}
-}
+};
 
 

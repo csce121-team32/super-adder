@@ -11,5 +11,5 @@ class tile{
 
 	//draws rectangle with text on it at loc.
 	bool drawTile(int x, int y);
-}
+};
 
