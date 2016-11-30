@@ -3,8 +3,11 @@
 #include "fltk/Graph.h"
 //#include "tile/Tile.h"
 #include "graphics/AdderWindow.h"
+#include "graphics/SplashScreen.h"
 int main(){
-	AdderWindow win(600,400,"super-adder");
+	AdderWindow win(1500,800,"super-adder");
+	DiffWindow win2(Point(100,100),700,500,"test");
+	StartWindow win3(Point(50,50), 1000, 700, "Best Game EVER");
 	return Graph_lib::gui_main();
 }
 

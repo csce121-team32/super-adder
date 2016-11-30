@@ -1,4 +1,4 @@
-#include "std_lib_facilities_4.h"
+#include "../std_lib_facilities_4.h"
 
 class Token {
 public:
@@ -146,7 +146,7 @@ double expression()
     }
 }
 
-
+/*
 int main()
 try
 { double val=0;
@@ -173,3 +173,4 @@ catch (...) {
 	keep_window_open();
     return 2;
 }
+*/
