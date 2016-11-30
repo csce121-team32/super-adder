@@ -1,10 +1,11 @@
 
 #include "../std_lib_facilities_4.h"
-//#include "../fltk/Window.h"
+#include "../fltk/Window.h"
 #include "../fltk/Graph.h"
 #include "SplashScreen.h"
-//#include "../fltk/GUI.h"
+#include "../fltk/GUI.h"
 #include "../fltk/Simple_window.h"
+#include "../game/game.h"
 
 DiffWindow::DiffWindow(Point xy, int x, int y, const string& title): Graph_lib::Window{x,y,title},
 difficulty1_button{Point(50,340), 100, 25, "3 tiles",cb_dif1},
@@ -31,7 +32,6 @@ t4{Point{250,100},"Arrange these tiles in proper order to generate the highest"}
 t5{Point{250,125},"score possible. Invalid order of tiles will result in a score "},
 t6{Point{250,150},"of zero for that round."}
 {
-	
 	t.set_font(Graph_lib::Font::times_bold);
 	t.set_font_size(40);
 	t1.set_font_size(17);
@@ -64,6 +64,14 @@ t6{Point{250,150},"of zero for that round."}
 	attach(difficulty3_button);
 	attach(difficulty4_button);
 	attach(difficulty5_button);
+	hide();
+}
+void DiffWindow::init(Game* g){
+	game = g;
+}
+bool DiffWindow::disp(){
+	show();
+	return true;
 }
 void DiffWindow::dif1(){
 }
@@ -141,16 +149,21 @@ r1{Point{x_max()-75,0}, 70, 20}
 	attach(t9);
 	attach(r);
 	attach(r1);
-
+	hide();
 }
-
-
+void StartWindow::init(Game* g){
+	game = g;
+}
+bool StartWindow::disp(){
+	show();
+	return true;
+}
 void StartWindow::exit(){
 	hide();
 }
 void StartWindow::rules(){
 	hide();
-	//Game::show_rules();
+	game->show_rules();
 }
 void StartWindow::cb_exit(Address,Address pw){
 	reference_to<StartWindow>(pw).exit();

@@ -3,13 +3,17 @@
 //#include "../fltk/GUI.h"
 #include "../fltk/Simple_window.h"
 #include "../std_lib_facilities_4.h"
+
 #ifndef ADDER_SPLASH
 #define ADDER_SPLASH
-
+class Game;
 
 struct DiffWindow : Graph_lib::Window{
 	DiffWindow(Point xy,int x, int y, const string& title);
+	bool disp();
+	void init(Game* g);
 	
+	private:
 	Button difficulty1_button;
 	Button difficulty2_button;
 	Button difficulty3_button;
@@ -34,6 +38,8 @@ struct DiffWindow : Graph_lib::Window{
 	Text t5; 
 	Text t6;
 	
+	Game* game;
+	
 	void dif1();
 	void dif2();
 	void dif3();
@@ -49,7 +55,10 @@ struct DiffWindow : Graph_lib::Window{
 
 struct StartWindow : Graph_lib::Window{
 	StartWindow(Point xy,int x, int y, const string& title);
+	bool disp();
+	void init(Game* g);
 	
+	private:
 	Button exit_button;
 	Button start_button;
 	Image i;
@@ -66,7 +75,9 @@ struct StartWindow : Graph_lib::Window{
 	Text t9;
 	Rectangle r;
 	Rectangle r1;
-		
+	
+	Game* game;
+	
 	void exit();
 	void rules();
 	static void cb_exit(Address,Address pw);
