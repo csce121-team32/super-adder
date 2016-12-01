@@ -11,6 +11,7 @@
 class AdderWindow;
 class DiffWindow;
 class StartWindow;
+class Tile;
 
 struct Game {
 	Game(AdderWindow* game_window, DiffWindow* diff_window, StartWindow* start_window);
@@ -18,9 +19,13 @@ struct Game {
 	AdderWindow* game_win;
 	StartWindow* start_win;
 	
+	vector<Tile*> tile_list;
+	
+	void populate_vector(int n);
 	bool show_rules();
 	bool show_start();
 	bool show_game();
+	void start_game(int i);
 };
 
 #endif

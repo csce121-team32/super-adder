@@ -2,7 +2,7 @@
 #include "fltk/Window.h"
 #include "fltk/Graph.h"
 #include "game/game.h"
-//#include "tile/Tile.h"
+#include "tile/Tile.h"
 #include "graphics/AdderWindow.h"
 #include "graphics/SplashScreen.h"
 int main(){

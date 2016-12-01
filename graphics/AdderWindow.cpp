@@ -12,6 +12,11 @@ AdderWindow::AdderWindow(int x, int y, string title)
 void AdderWindow::init(Game* g){
 	game = g;
 }
+bool AdderWindow::start(vector<Tile*> v){
+	tile_list = v;
+	show();
+	return true;
+}
 bool AdderWindow::disp(){
 	show();
 	return true;

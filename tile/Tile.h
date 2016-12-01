@@ -3,14 +3,20 @@ class Tile{
 	int x, y;
 	char value;
 	
-	Tile(char val);
+	
+
+	//draws rectangle with text on it at loc.
+	bool drawTile();
+	char randValue();
+	public:
+	
 	//returns the value of the tile.
 	char getValue();
 
 	//sets the value of the tile.
 	void setValue(char c);
-
-	//draws rectangle with text on it at loc.
-	bool drawTile();
+	
+	Tile(char val);
+	Tile();
 };
 

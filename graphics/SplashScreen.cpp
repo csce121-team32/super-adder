@@ -74,14 +74,19 @@ bool DiffWindow::disp(){
 	return true;
 }
 void DiffWindow::dif1(){
+	game->start_game(3);
 }
 void DiffWindow::dif2(){
+	game->start_game(4);
 }
 void DiffWindow::dif3(){
+	game->start_game(5);
 }
 void DiffWindow::dif4(){
+	game->start_game(6);
 }
 void DiffWindow::dif5(){
+	game->start_game(7);
 }
 void DiffWindow::cb_dif1(Address,Address pw){
 reference_to<DiffWindow>(pw).dif1();
