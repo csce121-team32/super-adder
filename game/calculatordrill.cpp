@@ -146,31 +146,12 @@ double expression()
     }
 }
 
-/*
-int main()
-try
-{ double val=0;
-cout<<"Welcome to our simple calculator. Please enter x to exit and = to print. Operators that are available include +, -, /, *.\n";
-    while (cin) {
+double calculator()
+{
+double val=0;
+		vector<token>a;
         Token t = ts.get();
-
-        if (t.kind == 'x') break; // 'q' for quit
-        if (t.kind == '=')        // ';' for "print now"
-            cout << "=" << val << '\n';
-        else
-            ts.putback(t);
+		a.push_back(t);
         val = expression();
-    }
-	keep_window_open();
 }
-catch (exception& e) {
-    cerr << "error: " << e.what() << '\n'; 
-	keep_window_open();
-    return 1;
-}
-catch (...) {
-    cerr << "Oops: unknown exception!\n"; 
-	keep_window_open();
-    return 2;
-}
-*/
+
