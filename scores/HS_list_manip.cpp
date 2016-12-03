@@ -88,17 +88,18 @@ void display_scores(int difficulty, string initials) {
 	vector<Player> list;
 	list = sort_scores(difficulty);
 	Vector_ref<Text> scores_out;
-
+	
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < list.size(); j++) {
 			if (i == 0) {
-					scores_out.push_back(new Text(Point(i * 50 + 100, j * 50 + 25), list[j].get_initials()));
+				scores_out.push_back(new Text(Point(i * 50 + 100, j * 50 + 25), list[j].get_initials()));
 			}
 			else if (i == 1) {
 				ostringstream int_string_score;
 				int_string_score << list[j].get_score();
 				scores_out.push_back(new Text(Point(i * 50 + 200, j * 50 + 25), int_string_score.str()));
 			}
+			else {};
 			w.attach(scores_out[scores_out.size() - 1]);
 		}
 	}
@@ -109,8 +110,11 @@ void display_scores(int difficulty, string initials) {
 
 		w.attach(p_initials);
 		w.attach(unknown_score);
+		w.wait_for_button();
 	}
-
-	w.wait_for_button();
+	else if (initials == "") {
+		w.wait_for_button();
+	}
+	else {};
 }
 
