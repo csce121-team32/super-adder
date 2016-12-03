@@ -24,7 +24,7 @@ class AdderWindow : Graph_lib::Window{
 	Rectangle r_tile6;
 	Rectangle r_tile7;
 	
-	void attach_push(Button& b);
+	void attach_push(Button& b, int n);
 	
 	void move_tile(int i);
 //	void move_tile2();

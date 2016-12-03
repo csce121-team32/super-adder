@@ -40,7 +40,7 @@ t6{Point{250,150},"of zero for that round."}
 	t4.set_font_size(17);
 	t5.set_font_size(17);
 	t6.set_font_size(17);
-	
+	attach(ii);
 	attach(tt);
 	attach(tt1);
 	attach(tt2);
@@ -51,7 +51,7 @@ t6{Point{250,150},"of zero for that round."}
 	attach(r2);
 	attach(r3);
 	attach(r4);
-	attach(ii);
+	
 	attach(t);
 	attach(t1);
 	attach(t2);

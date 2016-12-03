@@ -1,7 +1,7 @@
-#include "std_lib_facilities_4.h"
+#include "../std_lib_facilities_4.h"
 #include "HS_list_manip.h"
-#include "Simple_window.h"
-#include "Graph.h"
+#include "../fltk/Simple_window.h"
+#include "../fltk/Graph.h"
 #include "Player.h"
 
 //This function creates a vector of players from a file called

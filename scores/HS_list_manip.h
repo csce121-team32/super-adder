@@ -1,9 +1,9 @@
 #ifndef HS_list_manip_H
 #define HS_list_manip_H
 
-#include "std_lib_facilities_4.h"
+#include "../std_lib_facilities_4.h"
 #include "Player.h"
-#include "Simple_window.h"
+#include "../fltk/Simple_window.h"
 
 vector<Player> load_file_scores();
 
