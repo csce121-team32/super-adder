@@ -14,7 +14,7 @@ class StartWindow;
 class Tile;
 
 struct Game {
-	Game(AdderWindow* game_window, DiffWindow* diff_window, StartWindow* start_window);
+	Game(DiffWindow* diff_window, StartWindow* start_window);
 	DiffWindow* diff_win;
 	AdderWindow* game_win;
 	StartWindow* start_win;

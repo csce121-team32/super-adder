@@ -11,9 +11,12 @@ Tile::Tile(char val){
 Tile::Tile(){
 	
 	value = randValue();
-	cout<<value;
+	//cout<<value;
 }
-
+string Tile::getString(){
+	string s(1,value);
+	return s;
+}
 char Tile::getValue(){
 	return value;
 }

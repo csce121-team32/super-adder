@@ -6,13 +6,11 @@
 #include "graphics/AdderWindow.h"
 #include "graphics/SplashScreen.h"
 int main(){
-	AdderWindow win(1500,800,"super-adder");
 	DiffWindow win2(Point(100,100),700,500,"test");
 	StartWindow win3(Point(50,50), 1000, 700, "Best Game EVER");
-	Game game(&win,&win2,&win3);
+	Game game(&win2,&win3);
 	win3.init(&game);
 	win2.init(&game);
-	win.init(&game);
 	game.show_start();
 	return Graph_lib::gui_main();
 }
