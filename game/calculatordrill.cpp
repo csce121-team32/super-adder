@@ -149,7 +149,7 @@ double expression()
 double calculator()
 {
 double val=0;
-		vector<token>a;
+		vector<Token>a;
         Token t = ts.get();
 		a.push_back(t);
         val = expression();

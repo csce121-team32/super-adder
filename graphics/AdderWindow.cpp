@@ -7,13 +7,13 @@
 
 AdderWindow::AdderWindow(int x, int y, string title, vector<Tile*> t_list)
 : Window(x,y,title),
-b_tile1{Point{(-100),y_max()-200},100,200,(t_list.size()>=1) ? t_list.at(0)->getString() : "err",cb_select_tile1},
-b_tile2{Point{(-100),y_max()-200},100,200,(t_list.size()>=2) ? t_list.at(1)->getString() : "err",cb_select_tile2},
-b_tile3{Point{(-100),y_max()-200},100,200,(t_list.size()>=3) ? t_list.at(2)->getString() : "err",cb_select_tile3},
-b_tile4{Point{(-100),y_max()-200},100,200,(t_list.size()>=4) ? t_list.at(3)->getString() : "err",cb_select_tile4},
-b_tile5{Point{(-100),y_max()-200},100,200,(t_list.size()>=5) ? t_list.at(4)->getString() : "err",cb_select_tile5},
-b_tile6{Point{(-100),y_max()-200},100,200,(t_list.size()>=6) ? t_list.at(5)->getString() : "err",cb_select_tile6},
-b_tile7{Point{(-100),y_max()-200},100,200,(t_list.size()>=7) ? t_list.at(6)->getString() : "err",cb_select_tile7},
+b_tile1{Point{(-100),300},100,200,(t_list.size()>=1) ? t_list.at(0)->getString() : "err",cb_select_tile1},
+b_tile2{Point{(-100),300},100,200,(t_list.size()>=2) ? t_list.at(1)->getString() : "err",cb_select_tile2},
+b_tile3{Point{(-100),300},100,200,(t_list.size()>=3) ? t_list.at(2)->getString() : "err",cb_select_tile3},
+b_tile4{Point{(-100),300},100,200,(t_list.size()>=4) ? t_list.at(3)->getString() : "err",cb_select_tile4},
+b_tile5{Point{(-100),300},100,200,(t_list.size()>=5) ? t_list.at(4)->getString() : "err",cb_select_tile5},
+b_tile6{Point{(-100),300},100,200,(t_list.size()>=6) ? t_list.at(5)->getString() : "err",cb_select_tile6},
+b_tile7{Point{(-100),300},100,200,(t_list.size()>=7) ? t_list.at(6)->getString() : "err",cb_select_tile7},
 r_tile1{Point{(-100),y_max()-300},100,300},
 r_tile2{Point{(-100),y_max()-300},100,300},
 r_tile3{Point{(-100),y_max()-300},100,300},
@@ -23,22 +23,31 @@ r_tile6{Point{(-100),y_max()-300},100,300},
 r_tile7{Point{(-100),y_max()-300},100,300}
 {
 	tile_list = t_list;
-	attach_push(b_tile1);
-	attach_push(b_tile2);
-	attach_push(b_tile3);
-	attach_push(b_tile4);
-	attach_push(b_tile5);
-	attach_push(b_tile6);
-	attach_push(b_tile7);
+	attach_push(b_tile1,0);
+	attach_push(b_tile2,1);
+	attach_push(b_tile3,2);
+	attach_push(b_tile4,3);
+	attach_push(b_tile5,4);
+	attach_push(b_tile6,5);
+	attach_push(b_tile7,6);
 	show();
 }
-void AdderWindow::attach_push(Button& b){
-	attach(b);
-	button_list.push_back(&b);
+void AdderWindow::attach_push(Button& b,int n){
+	if(tile_list.size()>=n+1){	
+		attach(b);
+		tile_list.at(n)->setButton(&b);
+		tile_list.at(n)->setX(-100);
+		tile_list.at(n)->setY(300);
+	}
 }
 
 void AdderWindow::move_tile(int i){
-	button_list.at(i-1)->move(0.1,-1);
+	tile_list.at(i-1)->move(0.1,-1);
+	// char* s = tile_list.at(i-1)->getX()+"";
+	// puts(s);
+	
+	//((((x_max()/v.size())*(i-1))-((x_max()/v.size())/2)+50)/2,0)
+	
 	redraw();
 }
 /*
@@ -145,13 +154,15 @@ void AdderWindow::init(Game* g){
 }
 bool AdderWindow::start(vector<Tile*> v){
 	tile_list = v;
-	b_tile1.move(((x_max()/v.size())*1)-((x_max()/v.size())/2)+50,0);
-	b_tile2.move(((x_max()/v.size())*2)-((x_max()/v.size())/2)+50,0);
-	b_tile3.move(((x_max()/v.size())*3)-((x_max()/v.size())/2)+50,0);
-	b_tile4.move(((x_max()/v.size())*4)-((x_max()/v.size())/2)+50,0);
-	b_tile5.move(((x_max()/v.size())*5)-((x_max()/v.size())/2)+50,0);
-	b_tile6.move(((x_max()/v.size())*6)-((x_max()/v.size())/2)+50,0);
-	b_tile7.move(((x_max()/v.size())*7)-((x_max()/v.size())/2)+50,0);
+	for(int i = 1;i<=tile_list.size();i++){
+		tile_list.at(i-1)->move(((x_max()/v.size())*i)-((x_max()/v.size())/2)+50,0);
+		// b_tile2.move(((x_max()/v.size())*2)-((x_max()/v.size())/2)+50,0);
+		// b_tile3.move(((x_max()/v.size())*3)-((x_max()/v.size())/2)+50,0);
+		// b_tile4.move(((x_max()/v.size())*4)-((x_max()/v.size())/2)+50,0);
+		// b_tile5.move(((x_max()/v.size())*5)-((x_max()/v.size())/2)+50,0);
+		// b_tile6.move(((x_max()/v.size())*6)-((x_max()/v.size())/2)+50,0);
+		// b_tile7.move(((x_max()/v.size())*7)-((x_max()/v.size())/2)+50,0);
+	}
 	show();
 	return true;
 }

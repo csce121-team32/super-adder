@@ -20,6 +20,7 @@ struct Game {
 	StartWindow* start_win;
 	
 	vector<Tile*> tile_list;
+	string initials;
 	
 	void populate_vector(int n);
 	bool show_rules();

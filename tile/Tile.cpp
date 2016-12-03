@@ -13,6 +13,11 @@ Tile::Tile(){
 	value = randValue();
 	//cout<<value;
 }
+void Tile::move(int dx, int dy){
+	button->move(dx,dy);
+	y = y + dy;
+	x = x + dx;
+}
 string Tile::getString(){
 	string s(1,value);
 	return s;
@@ -20,7 +25,24 @@ string Tile::getString(){
 char Tile::getValue(){
 	return value;
 }
-
+int Tile::getX(){
+	return x;
+}
+int Tile::getY(){
+	return y;
+}
+Button* Tile::getButton(){
+	return button;
+}
+void Tile::setX(int n){
+	x = n;
+}
+void Tile::setY(int n){
+	y = n;
+}
+void Tile::setButton(Button* b){
+	button=b;
+}
 void Tile::setValue(char c){
 	value = c;
 }

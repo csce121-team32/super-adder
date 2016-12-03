@@ -1,9 +1,9 @@
 #ifndef User_initials_difficulty_H
 #define User_initials_difficulty_H
 
-#include "std_lib_facilities_4.h"
-#include "Simple_window.h"
-#include "Graph.h"
+#include "../std_lib_facilities_4.h"
+#include "../fltk/Simple_window.h"
+#include "../fltk/Graph.h"
 
 //This function creates an input box for user to enter a number 3-7 
 //to select difficulty and returns that difficulty

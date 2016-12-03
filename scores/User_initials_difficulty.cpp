@@ -1,7 +1,7 @@
 //User_initials_difficulty.cpp
-#include "std_lib_facilities_4.h"
+#include "../std_lib_facilities_4.h"
 #include "Player.h"
-#include "Simple_window.h"
+#include "../fltk/Simple_window.h"
 
 //This function creates an input box for user to enter a number 3-7 
 //to select difficulty and returns that difficulty

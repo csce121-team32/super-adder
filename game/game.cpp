@@ -7,6 +7,8 @@
 #include "../graphics/SplashScreen.h"
 #include "../graphics/AdderWindow.h"
 #include "../tile/Tile.h"
+#include "../scores/User_initials_difficulty.h"
+#include "../scores/HS_list_manip.h"
 
 Game::Game(DiffWindow* diff_window, StartWindow* start_window){
 	diff_win=diff_window;
@@ -69,6 +71,10 @@ void Game::populate_vector(int n){
 void Game::start_game(int n){
 	
 	populate_vector(n);
+	load_file_scores();
+	initials = initials_input();
+	
+	display_scores(n,initials);
 	game_win = new AdderWindow(1500,800,"super-adder",tile_list);
 	game_win->init(this);
 	game_win->start(tile_list);
