@@ -25,7 +25,8 @@ class AdderWindow : Graph_lib::Window{
 	Rectangle r_tile7;
 	
 	void attach_push(Button& b, int n);
-	
+	void check();
+	int calculate_score();
 	void move_tile(int i);
 //	void move_tile2();
 //	void move_tile3();
@@ -57,6 +58,7 @@ class AdderWindow : Graph_lib::Window{
 	
 	
 	Game* game;
+	string selected_tiles;
 	vector<Tile*> tile_list;
 	vector<Button*> button_list;
 	public:

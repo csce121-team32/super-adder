@@ -4,6 +4,7 @@
 #include "../fltk/Graph.h"
 #include "../game/game.h"
 #include "../tile/Tile.h"
+#include "../game/calculator.h"
 
 AdderWindow::AdderWindow(int x, int y, string title, vector<Tile*> t_list)
 : Window(x,y,title),
@@ -45,7 +46,8 @@ void AdderWindow::move_tile(int i){
 	tile_list.at(i-1)->move(0.1,-1);
 	// char* s = tile_list.at(i-1)->getX()+"";
 	// puts(s);
-	
+	// int targetx = (((x_max()/v.size())*(i-1))-((x_max()/v.size())/2)+50)/2;
+	// int targety = y_max-300;
 	//((((x_max()/v.size())*(i-1))-((x_max()/v.size())/2)+50)/2,0)
 	
 	redraw();
@@ -76,26 +78,48 @@ void AdderWindow::move_tile7(){
 	redraw();
 }
 */
+void AdderWindow::check(){
+	if(tile_list.size()==selected_tiles.size()){
+		calculate_score();
+	}
+}
+int AdderWindow::calculate_score(){
+	calculator(selected_tiles);
+}
 void AdderWindow::select_tile1(){
 	Fl::add_timeout(.1,cb_move_tile1,(void*)this);
+	selected_tiles = selected_tiles + tile_list.at(0)->getString();
+	check();
 }
 void AdderWindow::select_tile2(){
 	Fl::add_timeout(.1,cb_move_tile2,(void*)this);
+	selected_tiles = selected_tiles + tile_list.at(1)->getString();
+	check();
 }
 void AdderWindow::select_tile3(){
 	Fl::add_timeout(.1,cb_move_tile3,(void*)this);
+	selected_tiles = selected_tiles + tile_list.at(2)->getString();
+	check();
 }
 void AdderWindow::select_tile4(){
 	Fl::add_timeout(.1,cb_move_tile4,(void*)this);
+	selected_tiles = selected_tiles + tile_list.at(3)->getString();
+	check();
 }
 void AdderWindow::select_tile5(){
 	Fl::add_timeout(.1,cb_move_tile5,(void*)this);
+	selected_tiles = selected_tiles + tile_list.at(4)->getString();
+	check();
 }
 void AdderWindow::select_tile6(){
 	Fl::add_timeout(.1,cb_move_tile6,(void*)this);
+	selected_tiles = selected_tiles + tile_list.at(5)->getString();
+	check();
 }
 void AdderWindow::select_tile7(){
 	Fl::add_timeout(.1,cb_move_tile7,(void*)this);
+	selected_tiles = selected_tiles + tile_list.at(6)->getString();
+	check();
 }
 
 void AdderWindow::cb_select_tile1(Address,Address pw){
