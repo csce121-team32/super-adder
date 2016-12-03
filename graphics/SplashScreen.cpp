@@ -11,18 +11,18 @@ DiffWindow::DiffWindow(Point xy, int x, int y, const string& title): Graph_lib::
 difficulty1_button{Point(50,340), 100, 25, "3 tiles",cb_dif1}, 
 difficulty2_button{Point(175,340), 100, 25, "4 tiles",cb_dif2},
 difficulty3_button{Point(300,340), 100, 25, "5 tiles",cb_dif3},  //difficulty buttons for user to select
-difficulty4_button{Point(425,340), 125, 25, "6 tiles",cb_dif4},
-difficulty5_button{Point(575,340), 125, 25, "7 tiles",cb_dif5},
-tt{Point{60,355},"Easy"},
-tt1{Point{180,355},"Normal"},
-tt2{Point{310,355},"Hard"},   //descriptions for difficulty buttons
-tt3{Point{430,355},"Lunatic"},
-tt4{Point{577,355},"Extra"},
+difficulty4_button{Point(425,340), 100, 25, "6 tiles",cb_dif4},
+difficulty5_button{Point(550,340), 100, 25, "7 tiles",cb_dif5},
+tt{Point{80,355},"Easy"},
+tt1{Point{205,355},"Normal"},
+tt2{Point{330,355},"Hard"},   //descriptions for difficulty buttons
+tt3{Point{455,355},"Lunatic"},
+tt4{Point{580,355},"Extra"},
 r{Point{50,340}, 100, 25},
 r1{Point{175,340}, 100, 25},
 r2{Point{300,340}, 100, 25},  //rectangles to show where buttons are with image overlay
-r3{Point{425,340}, 125, 25},
-r4{Point{575,340}, 125, 25},
+r3{Point{425,340}, 100, 25},
+r4{Point{550,340}, 100, 25},
 ii{Point{0,0},"background1.jpg"},  //image for screen
 t{Point{25,50},"How to play:"},
 t1{Point{250,25},"To begin the game, choose a difficulty. You will be given "},
