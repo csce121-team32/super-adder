@@ -59,7 +59,7 @@ vector<Player> sort_scores(int difficulty, vector<Player> Players) {
 //This part pushes back a new player to the vector of players if the initials arent "" (blank)
 //It then sorts the vector of players with the new player included and 
 //updates the file that holds all the scores
-void update_scores(string p_initials, int p_score, int p_difficulty, vector<Player> Players) {
+void update_scores(string p_initials, double p_score, int p_difficulty, vector<Player> Players) {
 	fstream iost{ "in.txt",ios_base::out };
 	if (!iost) error("can't open output file, out.txt");
 	if (p_initials != "") {
@@ -82,7 +82,7 @@ void update_scores(string p_initials, int p_score, int p_difficulty, vector<Play
 
 //This function shows the scores for a certain difficulty followed by 
 //A players initials after all the scores
-void display_scores(int difficulty, string initials) {
+void display_scores(int difficulty, string initials, double score) {
 	string label = "HIGH SCORES FOR DIFFICULTY LEVEL " + to_string(difficulty);
 	Simple_window w{ Point(50,50),400,600, label };
 	vector<Player> list;
@@ -106,15 +106,24 @@ void display_scores(int difficulty, string initials) {
 
 	if (initials != "") {
 		Text p_initials(Point(100, list.size() * 50 + 25), initials);
-		Text unknown_score(Point(250, list.size() * 50 + 25), "???");
-
 		w.attach(p_initials);
-		w.attach(unknown_score);
-		w.wait_for_button();
+
+		if (score != -9999.0) {
+			ostringstream int_to_string;
+			int_to_string << score;
+			Text final_score(Point(250, list.size() * 50 + 25), int_to_string.str());
+			w.attach(final_score);
+			w.wait_for_button();
+		}
+		else if (score == -9999.0) {
+			Text unknown_score(Point(250, list.size() * 50 + 25), "???");
+			w.attach(unknown_score);
+			w.wait_for_button();
+		}
+		
 	}
 	else if (initials == "") {
 		w.wait_for_button();
 	}
 	else {};
 }
-
