@@ -22,6 +22,15 @@ string Tile::getString(){
 	string s(1,value);
 	return s;
 }
+bool Tile::is_used(){
+	if(!used){
+		used = true;
+		return false;
+	}
+	else{
+		return used;
+	}
+}
 char Tile::getValue(){
 	return value;
 }

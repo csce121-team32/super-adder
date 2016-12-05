@@ -14,8 +14,9 @@ class Tile{
 	bool drawTile();
 	char randValue(); //generates a random value for the tile
 	Button* button;
+	bool used;
 	public:
-	
+	bool is_used();
 	void move(int dx, int dy); //moves the tile and keeps track of x,y (why does button not do this by itself :????)
 	void setX(int n); //sets x coord -- for init
 	void setY(int n); //sets y coord, -- for init

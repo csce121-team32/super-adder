@@ -6,7 +6,8 @@
 
 
 void Token_stream::setString(string s){
-	ss = new stringstream(s);
+	ss.str(s);
+	full = false;
 }
 
 // The constructor just sets full to indicate that the buffer is empty:
@@ -34,7 +35,7 @@ Token Token_stream::get()
     } 
 
     char ch;
-    *ss >> ch;    // note that >> skips whitespace (space, newline, tab, etc.)
+    ss >> ch;    // note that >> skips whitespace (space, newline, tab, etc.)
 
     switch (ch) {
     case '=':    // for "print"
@@ -45,9 +46,9 @@ Token Token_stream::get()
     case '0': case '1': case '2': case '3': case '4':
     case '5': case '6': case '7': case '8': case '9':
         {    
-            ss->putback(ch);         // put digit back into the input stream
+            ss.putback(ch);         // put digit back into the input stream
             double val;
-            *ss >> val;              // read a floating-point number
+            ss >> val;              // read a floating-point number
             return Token('8',val);   // let '8' represent "a number"
         }
     default:
@@ -56,10 +57,10 @@ Token Token_stream::get()
 }
 
 
-Token_stream ts;        // provides get() and putback() 
+ Token_stream ts;       // provides get() and putback() 
 
 
-double expression();    // declaration so that primary() can call expression()
+   // declaration so that primary() can call expression()
 
 // deal with numbers and parentheses
 double primary()
@@ -76,7 +77,13 @@ double primary()
     case '8':            // we use '8' to represent a number
         return t.value;  // return the number's value
     default:
-        error("primary expected");
+		ts.putback(t);
+		if(t.kind=='+'||t.kind=='-'){
+			return 0;
+		}
+		else{
+			error("expected primary");
+		}
     }
 }
 
@@ -134,14 +141,19 @@ double expression()
 
 double calculator(string a)
 {
+	
 	double val=0;
 	string b = a + "=";
 	ts.setString(b);
-	puts(a.c_str());
+//	puts(b.c_str());
+	try{
     val = expression();
+	}catch (exception& e) {
+		return 0;
+	}
 	string s = std::to_string(val);
 	char const* pchar = s.c_str();
-	puts(pchar);
+//	puts(pchar);
 	return val;
 }
 

@@ -20,11 +20,10 @@ public:
     void putback(Token t);    // put a Token back
 	void setString(string s);
 private:
-	stringstream* ss;
+	stringstream ss;
     bool full;        // is there a Token in the buffer?
     Token buffer;     // here is where we keep a Token put back using putback()
 };
-
 double primary();
 double term();
 double expression();

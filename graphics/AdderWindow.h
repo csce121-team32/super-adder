@@ -19,15 +19,15 @@ class AdderWindow : Graph_lib::Window{
 	Text score_text;
 	Text time_remaining_text;
 	
-	int time;
+	double time;
 	
 	std::map<int,int> nummap;
 	void attach_push(Button& b, int n);
 	void check();
 	int calculate_score();
-	void set_score(int i);
-	void set_time(int i);
-	void move_tile(int i);
+	void set_score(double i);
+	void set_time(double i);
+	void move_tile(double i);
 //	void move_tile2();
 //	void move_tile3();
 //	void move_tile4();
