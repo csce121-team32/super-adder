@@ -78,7 +78,7 @@ double primary()
         return t.value;  // return the number's value
     default:
 		ts.putback(t);
-		if(t.kind=='+'||t.kind=='-'){
+		if(t.kind=='+'||t.kind=='-'){	// if unary + or - is present, place a zero behind it.
 			return 0;
 		}
 		else{
@@ -97,7 +97,7 @@ double term()
     while(true) {
         switch (t.kind) {
 		case '(':
-			//left*=primary();
+			//left*=primary();				//error if parentheses are not preceded by operator, or placed first.
 			//t = ts.get();
 			error("( not expected");
 			break;
@@ -148,17 +148,13 @@ double calculator(string a)
 {
 	
 	double val=0;
-	string b = a + "=";
+	string b = a + "=";	// add equal to end of formula input
 	ts.setString(b);
-//	puts(b.c_str());
 	try{
-    val = expression();
+    val = expression();	// run calculator remade to work with strings.
 	}catch (exception& e) {
-		return 0;
+		return 0;	// if error, score is 0.
 	}
-	string s = std::to_string(val);
-	char const* pchar = s.c_str();
-//	puts(pchar);
 	return val;
 }
 

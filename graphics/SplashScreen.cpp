@@ -31,7 +31,8 @@ t3{Point{250,75},"These tiles will consist of +,-,/,* or 1-9, chosen at random."
 t4{Point{250,100},"Arrange these tiles in proper order to generate the highest"},
 t5{Point{250,125},"score possible. Invalid order of tiles will result in a score "},
 t6{Point{250,150},"of zero for that round."}
-{ //attach buttons, rectangles, image, and text
+{ 
+	//set font for instructions.
 	t.set_font(Graph_lib::Font::times_bold);
 	t.set_font_size(40);
 	t1.set_font_size(17);
@@ -40,6 +41,7 @@ t6{Point{250,150},"of zero for that round."}
 	t4.set_font_size(17);
 	t5.set_font_size(17);
 	t6.set_font_size(17);
+	//attach buttons, rectangles, image, and text
 	attach(ii);
 	attach(tt);
 	attach(tt1);
@@ -66,10 +68,10 @@ t6{Point{250,150},"of zero for that round."}
 	attach(difficulty5_button);
 	hide();
 }
-void DiffWindow::init(Game* g){
+void DiffWindow::init(Game* g){		//init provides it with a pointer to the game class to allow it to call functions.
 	game = g;
 }
-bool DiffWindow::disp(){   //hide/show cerain windows based on where the user is in the game
+bool DiffWindow::disp(){   //show window based on where the user is in the game
 	show();
 	return true;
 }
@@ -81,7 +83,7 @@ void DiffWindow::dif2(){
 	game->start_game(4);
 	hide();
 }
-void DiffWindow::dif3(){  //callback function for the difficulty buttons
+void DiffWindow::dif3(){  //callback function for the difficulty buttons -> starts the game
 	game->start_game(5);
 	hide();
 }
@@ -161,14 +163,14 @@ r1{Point{x_max()-75,0}, 70, 20}
 	attach(r1);
 	hide();
 }
-void StartWindow::init(Game* g){ //callback for the buttons
+void StartWindow::init(Game* g){ //init provides with game pointer to call functions to show other windows and progress the game.
 	game = g;
 }
 bool StartWindow::disp(){   
 	show();
 	return true;
 }
-void StartWindow::exit(){  //hide/show correct window based on where the player is at during the game
+void StartWindow::exit(){  //hide/show window when needed from game class.
 	hide();
 }
 void StartWindow::rules(){

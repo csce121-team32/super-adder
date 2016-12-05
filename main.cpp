@@ -5,6 +5,8 @@
 #include "tile/Tile.h"
 #include "graphics/AdderWindow.h"
 #include "graphics/SplashScreen.h"
+
+//initializes windows, and then provides the program with addresses for them, and starts the game.
 int main(){
 	DiffWindow win2(Point(100,100),700,500,"test");
 	StartWindow win3(Point(50,50), 1000, 700, "Best Game EVER");
