@@ -75,18 +75,23 @@ bool DiffWindow::disp(){   //hide/show cerain windows based on where the user is
 }
 void DiffWindow::dif1(){
 	game->start_game(3);
+	hide();
 }
 void DiffWindow::dif2(){
 	game->start_game(4);
+	hide();
 }
 void DiffWindow::dif3(){  //callback function for the difficulty buttons
 	game->start_game(5);
+	hide();
 }
 void DiffWindow::dif4(){
 	game->start_game(6);
+	hide();
 }
 void DiffWindow::dif5(){
 	game->start_game(7);
+	hide();
 }
 void DiffWindow::cb_dif1(Address,Address pw){
 reference_to<DiffWindow>(pw).dif1();

@@ -18,14 +18,17 @@ Game::Game(DiffWindow* diff_window, StartWindow* start_window){
 
 bool Game::show_rules(){
 	diff_win->disp();
+	return true;
 }
 
 bool Game::show_start(){
 	start_win->disp();
+	return true;
 }
 
 bool Game::show_game(){
 	game_win->disp();
+	return true;
 }
 /*
 double Game::get_score(){
@@ -73,10 +76,14 @@ void Game::start_game(int n){
 	populate_vector(n);
 	load_file_scores();
 	initials = initials_input();
-	
+	difficulty = n;
 	display_scores(n,initials);
 	game_win = new AdderWindow(1500,800,"super-adder",tile_list);
 	game_win->init(this);
 	game_win->start(tile_list);
 	
+}
+void Game::end_game(double d){
+	update_scores(initials,d,difficulty);
+	display_scores(difficulty,initials,d);
 }

@@ -96,6 +96,11 @@ double term()
 
     while(true) {
         switch (t.kind) {
+		case '(':
+			//left*=primary();
+			//t = ts.get();
+			error("( not expected");
+			break;
         case '*':
             left *= primary();
             t = ts.get();

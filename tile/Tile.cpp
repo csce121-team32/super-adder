@@ -6,6 +6,7 @@
 //	int y;
 Tile::Tile(char val){
 	value = val;
+	used = false;
 }
 
 Tile::Tile(){

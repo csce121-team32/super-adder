@@ -30,27 +30,60 @@ time_remaining_text{Point{x_max()-300,30},"Time Remaining"}
 	attach(time_remaining_text);
 	set_score(0);
 	
+	ended = false;
 	show();
 	time = 2*tile_list.size()*tile_list.size();
-	set_time(time);
+	set_time(0);
 	Fl::add_timeout(1,cb_time,(void*)this);
 }
 void AdderWindow::set_time(double i){
-	char tp[100];
-	snprintf(tp,sizeof(tp),"%.1f",i);
-	string s = tp;
-	time_remaining_text.~Text();
-	new (&time_remaining_text) Text(Point(x_max()-300,30),"Time Remaining: "+s);
+	if(time>0&&!ended){
+		time = time - i;
+		char tp[100];
+		snprintf(tp,sizeof(tp),"%.1f",time);
+		string s = tp;
+		time_remaining_text.~Text();
+		new (&time_remaining_text) Text(Point(x_max()-300,30),"Time Remaining: "+s);
+	}
+	else{
+		end();
+	}
+}
+void AdderWindow::end(){
+	if(!ended){
+		Text scoreend{Point{30,90},"err"};
+		ended = true;
+		Simple_window winend{Point{x_max()/2,y_max()/2},400,400,"Game over"};
+		if(time == 0){
+			scoreend.~Text();
+			new (&scoreend) Text{Point{10,90},"Time's Up!"};
+		}
+		else{
+			scoreend.~Text();
+			new (&scoreend) Text{Point{10,90},"Congratulations, your score was "+score_s};
+		}
+		//winend.attach(winend);
+		winend.attach(scoreend);
+		winend.wait_for_button();
+		game->end_game(score);
+		game->show_rules();
+		hide();
+	}
 }
 void AdderWindow::set_score(double i){
+	score = i;
 	char tp[100];
 	snprintf(tp,sizeof(tp),"%.2f",i);
 	string s = tp;
+	score_s = s;
 	score_text.~Text();
 	new (&score_text) Text(Point(50,30),"Score: "+s);
+	if(tile_list.size()==selected_tiles.size()){
+		end();
+	}
 }
 void AdderWindow::attach_push(Button& b,int n){
-	if(tile_list.size()>=n+1){	
+	if(tile_list.size()>=(unsigned)(n+1)){	
 		attach(b);
 		tile_list.at(n)->setButton(&b);
 		tile_list.at(n)->setX(-100);
@@ -84,10 +117,11 @@ void AdderWindow::check(){
 		calculate_score();
 	}
 }
-int AdderWindow::calculate_score(){
+double AdderWindow::calculate_score(){
 	puts(selected_tiles.c_str());
 	double n = calculator(selected_tiles);
 	set_score(n);
+	return n;
 }
 void AdderWindow::select_tile1(){
 	if(!tile_list.at(0)->is_used()){
@@ -162,8 +196,7 @@ void AdderWindow::cb_select_tile7(Address,Address pw){
 reference_to<AdderWindow>(pw).select_tile7();
 }
 void AdderWindow::changetime(){
-	time = time-.1;
-	set_time(time);
+	set_time(.1);
 	redraw();
 }
 void AdderWindow::cb_time(void* u){

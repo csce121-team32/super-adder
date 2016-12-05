@@ -19,7 +19,7 @@ void update_scores(string p_initials = "", double p_score = 0, int p_difficulty 
 //(difficulty) top 5 high scores for that difficulty
 //(difficulty,initials) top 5 followed by players initials with ??? score
 //(difficulty, initials, score) top 5 then players initials and their score
-void display_scores(int difficulty, string initials = "", double score = -9999.0);
+void display_scores(int difficulty, string initials = "", double score = -999999999.0);
 //------------------------------------------------------------------------
 
 #endif

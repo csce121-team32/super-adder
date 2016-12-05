@@ -24,7 +24,7 @@ class AdderWindow : Graph_lib::Window{
 	std::map<int,int> nummap;
 	void attach_push(Button& b, int n);
 	void check();
-	int calculate_score();
+	double calculate_score();
 	void set_score(double i);
 	void set_time(double i);
 	void move_tile(double i);
@@ -34,6 +34,7 @@ class AdderWindow : Graph_lib::Window{
 //	void move_tile5();
 //	void move_tile6();
 //	void move_tile7();
+	void end();
 	void changetime();
 	static void cb_time(void* u);
 	static void cb_move_tile1(void* u);
@@ -58,7 +59,9 @@ class AdderWindow : Graph_lib::Window{
 	static void cb_select_tile6(Address,Address pw);
 	static void cb_select_tile7(Address,Address pw);
 	
-	
+	int score;
+	string score_s;
+	bool ended;
 	Game* game;
 	string selected_tiles;
 	vector<Tile*> tile_list;

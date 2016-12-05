@@ -21,12 +21,14 @@ struct Game {
 	
 	vector<Tile*> tile_list;
 	string initials;
+	int difficulty;
 	
 	void populate_vector(int n);
 	bool show_rules();
 	bool show_start();
 	bool show_game();
 	void start_game(int i);
+	void end_game(double d);
 };
 
 #endif

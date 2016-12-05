@@ -108,14 +108,14 @@ void display_scores(int difficulty, string initials, double score) {
 		Text p_initials(Point(100, list.size() * 50 + 25), initials);
 		w.attach(p_initials);
 
-		if (score != -9999.0) {
+		if (score != -999999999.0) {
 			ostringstream int_to_string;
 			int_to_string << score;
 			Text final_score(Point(250, list.size() * 50 + 25), int_to_string.str());
 			w.attach(final_score);
 			w.wait_for_button();
 		}
-		else if (score == -9999.0) {
+		else if (score == -999999999.0) {
 			Text unknown_score(Point(250, list.size() * 50 + 25), "???");
 			w.attach(unknown_score);
 			w.wait_for_button();
