@@ -16,17 +16,17 @@ class AdderWindow : Graph_lib::Window{
 	Button b_tile5;
 	Button b_tile6;
 	Button b_tile7;
-	Rectangle r_tile1;
-	Rectangle r_tile2;
-	Rectangle r_tile3;
-	Rectangle r_tile4;
-	Rectangle r_tile5;
-	Rectangle r_tile6;
-	Rectangle r_tile7;
+	Text score_text;
+	Text time_remaining_text;
 	
+	int time;
+	
+	std::map<int,int> nummap;
 	void attach_push(Button& b, int n);
 	void check();
 	int calculate_score();
+	void set_score(int i);
+	void set_time(int i);
 	void move_tile(int i);
 //	void move_tile2();
 //	void move_tile3();
@@ -34,6 +34,8 @@ class AdderWindow : Graph_lib::Window{
 //	void move_tile5();
 //	void move_tile6();
 //	void move_tile7();
+	void changetime();
+	static void cb_time(void* u);
 	static void cb_move_tile1(void* u);
 	static void cb_move_tile2(void* u);
 	static void cb_move_tile3(void* u);

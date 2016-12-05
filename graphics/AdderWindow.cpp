@@ -15,13 +15,8 @@ b_tile4{Point{(-100),300},100,200,(t_list.size()>=4) ? t_list.at(3)->getString()
 b_tile5{Point{(-100),300},100,200,(t_list.size()>=5) ? t_list.at(4)->getString() : "err",cb_select_tile5},
 b_tile6{Point{(-100),300},100,200,(t_list.size()>=6) ? t_list.at(5)->getString() : "err",cb_select_tile6},
 b_tile7{Point{(-100),300},100,200,(t_list.size()>=7) ? t_list.at(6)->getString() : "err",cb_select_tile7},
-r_tile1{Point{(-100),y_max()-300},100,300},
-r_tile2{Point{(-100),y_max()-300},100,300},
-r_tile3{Point{(-100),y_max()-300},100,300},
-r_tile4{Point{(-100),y_max()-300},100,300},
-r_tile5{Point{(-100),y_max()-300},100,300},
-r_tile6{Point{(-100),y_max()-300},100,300},
-r_tile7{Point{(-100),y_max()-300},100,300}
+score_text{Point{50,30},"Score: 0"},
+time_remaining_text{Point{x_max()-300,30},"Time Remaining"}
 {
 	tile_list = t_list;
 	attach_push(b_tile1,0);
@@ -31,7 +26,22 @@ r_tile7{Point{(-100),y_max()-300},100,300}
 	attach_push(b_tile5,4);
 	attach_push(b_tile6,5);
 	attach_push(b_tile7,6);
+	attach(score_text);
+	attach(time_remaining_text);
+	set_score(0);
+	
 	show();
+	time = 2*tile_list.size()*tile_list.size();
+	set_time(time);
+	Fl::add_timeout(1,cb_time,(void*)this);
+}
+void AdderWindow::set_time(int i){
+	time_remaining_text.~Text();
+	new (&time_remaining_text) Text(Point(x_max()-300,30),"Time Remaining: "+std::to_string(i));
+}
+void AdderWindow::set_score(int i){
+	score_text.~Text();
+	new (&score_text) Text(Point(50,30),"Score: "+std::to_string(i));
 }
 void AdderWindow::attach_push(Button& b,int n){
 	if(tile_list.size()>=n+1){	
@@ -43,11 +53,22 @@ void AdderWindow::attach_push(Button& b,int n){
 }
 
 void AdderWindow::move_tile(int i){
-	tile_list.at(i-1)->move(0.1,-1);
+	int currentx = tile_list.at(i-1)->getX();
+	int currenty = tile_list.at(i-1)->getY();
 	// char* s = tile_list.at(i-1)->getX()+"";
 	// puts(s);
-	// int targetx = (((x_max()/v.size())*(i-1))-((x_max()/v.size())/2)+50)/2;
-	// int targety = y_max-300;
+	if(nummap.find(i)==nummap.end()){
+		nummap[i]=selected_tiles.size()-1;
+	}
+	int targetx = ((((x_max()/tile_list.size())*(nummap[i]))+((x_max()/tile_list.size())/2)+500)/2);
+	int targety = y_max()-300;
+	string s = std::to_string(selected_tiles.size());
+	char const* pchar = s.c_str();
+//	puts(pchar);
+	string s2 = std::to_string(nummap[i]);
+	char const* pchar2 = s2.c_str();
+	//puts(pchar2);
+	tile_list.at(i-1)->move(((targetx-currentx)/10),((targety-currenty)/10));
 	//((((x_max()/v.size())*(i-1))-((x_max()/v.size())/2)+50)/2,0)
 	
 	redraw();
@@ -84,7 +105,8 @@ void AdderWindow::check(){
 	}
 }
 int AdderWindow::calculate_score(){
-	calculator(selected_tiles);
+	double n = calculator(selected_tiles);
+	set_score(n);
 }
 void AdderWindow::select_tile1(){
 	Fl::add_timeout(.1,cb_move_tile1,(void*)this);
@@ -143,7 +165,15 @@ reference_to<AdderWindow>(pw).select_tile6();
 void AdderWindow::cb_select_tile7(Address,Address pw){
 reference_to<AdderWindow>(pw).select_tile7();
 }
-
+void AdderWindow::changetime(){
+	time = time-1;
+	set_time(time);
+	redraw();
+}
+void AdderWindow::cb_time(void* u){
+	((AdderWindow*)u)->changetime();
+	Fl::repeat_timeout(1, cb_time,u);
+}
 void AdderWindow::cb_move_tile1(void* u){
 	((AdderWindow*)u)->move_tile(1);
 	Fl::repeat_timeout(.1, cb_move_tile1,u);

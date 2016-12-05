@@ -1,6 +1,8 @@
 #include "../std_lib_facilities_4.h"
 #include <sstream>
 #include "calculator.h"
+#include "../fltk/Simple_window.h"
+#include "../fltk/Graph.h"
 
 
 void Token_stream::setString(string s){
@@ -41,7 +43,7 @@ Token Token_stream::get()
         return Token(ch);        // let each character represent itself
     case '.':
     case '0': case '1': case '2': case '3': case '4':
-    case '5': case '6': case '7': case '9':
+    case '5': case '6': case '7': case '8': case '9':
         {    
             ss->putback(ch);         // put digit back into the input stream
             double val;
@@ -133,8 +135,13 @@ double expression()
 double calculator(string a)
 {
 	double val=0;
-	ts.setString(a);
+	string b = a + "=";
+	ts.setString(b);
+	puts(a.c_str());
     val = expression();
+	string s = std::to_string(val);
+	char const* pchar = s.c_str();
+	puts(pchar);
 	return val;
 }
 
